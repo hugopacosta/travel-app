@@ -9,6 +9,5 @@ import '@fortawesome/fontawesome-free/js/all'
 import html from './views/index.html'
 
 export {
-    checkUrl,
-    retrieveAnalysis
+    checkUrl
 }
