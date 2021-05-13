@@ -1,0 +1,56 @@
+//** variables
+$input-text-color: #a3a3a3;
+$background: #f5f6fa;
+$text: #9c9c9c;
+$input-bg-color: #fff;
+$button-bg-color: #f18f01;
+$button-text-color: #fff;
+
+
+.url-submit-form {
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 6px 10px 5px rgba(0, 0, 0 , .4);
+}
+
+.form {	
+	&__field {
+		width: 90%;
+		background: #fff;
+		color: $input-text-color;
+		font: inherit;
+		border: 0;
+		outline: 0;
+		padding: 22px 18px;
+	}
+}
+
+.btn {
+	display: inline-block;
+	background: transparent;
+	color: inherit;
+    font: 1rem "PT Sans", sans-serif;
+    font-size: 15px;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	transition: all 200ms ease-in;
+	cursor: pointer;
+	
+	&--primary {
+		background: $button-bg-color;
+		color: $button-text-color;
+		border-radius: 2px;
+		padding: 12px 36px;
+		
+		&:hover {
+			background: darken($button-bg-color, 10%);
+		}
+		
+	}
+}
+
+.form-section {
+    max-width: 1200px;
+	margin-bottom: 100px;
+}

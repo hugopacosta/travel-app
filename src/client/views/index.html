@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="../../../node_modules/@fortawesome/fontawesome-free/css/all.css">
+        <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&family=Public+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+        <link rel="shortcut icon" href="#">
+        <meta charset="utf-8">
+        <title>Test</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <div class="header-content">
+                    <div class="title-container">
+                        SENTIMENT ANALYSIS
+                    </div>
+                </div>
+            </header>
+    
+            <main class="content-container">
+                <section class="form-section">
+                    <div class="info-container">
+                        <span class="input-info">The Sentiment Analyser will perform a detailed sentiment analysis of the text found in the inserted URL</span>
+                    </div>
+                    <div class="form-container">
+                        <form>
+                            <div class="url-submit-form">
+                                <input id="url-input" class="form__field" type="text" name="input" value="" placeholder="URL">
+                                <button id="generate" class="btn btn--primary btn--inside uppercase" type="submit" name="" value="submit">
+                                    ANALYSE
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+    
+                <section>
+                    <div class="results-container">
+                        <div class="results-img-container">
+                            <div class="img-container">
+                                <img src="../../../assets/main_img.png" class="img-highlight">
+                            </div>
+                        </div>
+                        <div class="results-text-container">
+                            <div class="result-row">
+                                <div class="result-item">
+                                    <span class="result-label">Status:</span>
+                                    <span class="result" id="status"></span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Agreement:</span>
+                                    <span class="result" id="agreement"></span>
+                                </div>
+                            </div>
+                            <div class="result-row">
+                                <div class="result-item">
+                                    <span class="result-label">Confidence:</span>
+                                    <span class="result" id="confidence"></span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Irony:</span>
+                                    <span class="result" id="irony"></span>
+                                </div>
+                            </div>
+                            <div class="result-row">
+                                <div class="result-item">
+                                    <span class="result-label">Subjectivity:</span>
+                                    <span class="result" id="subjectivity"></span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Score:</span>
+                                    <span class="result" id="score"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+    
+            <footer class="footer">
+                <div class="footer-container">
+                    <div class="social-media-container">
+                        <i class="fab fa-twitter icon fa-2x"></i>
+                        <i class="fab fa-facebook icon fa-2x"></i>
+                        <i class="fab fa-linkedin icon fa-2x"></i>
+                    </div>
+                    <div class="credits-container">
+                        <div class="credits">
+                            <a href="index.html">
+                                Sentiment Analysis
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
+    </body>
+</html>
