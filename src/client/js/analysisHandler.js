@@ -1,46 +1,63 @@
 import { checkUrl } from './urlChecker'
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('generate').addEventListener('click', retrieveAnalysis);
+    document.getElementById('generate').addEventListener('click', retrieveTravelData);
 });
 
-function retrieveAnalysis(e){
+async function retrieveTravelData(e) {
     e.preventDefault();
-    const urlInput = document.getElementById('url-input').value;
-    if(checkUrl(urlInput)){
-        document.getElementById('status').innerHTML = 'Loading...'
-        getSentimentAnalysis(urlInput)
-        .then(function(data){
-            console.log(data);
-        });
-    } else {
-        document.getElementById('status').innerHTML = 'Invalid URL'
-        cleanUI();
-    }
+    const cityName = document.getElementById('url-input').value;
+    document.getElementById('status').innerHTML = 'Loading...';
+    const cityData = await getCoordinates(cityName);
+    const weather = await getWeather(cityData);
+    const imageData = await getImage(cityName);
+    console.log(imageData)
 }
 
-const getSentimentAnalysis = async (urlInput)=>{
-    console.log(urlInput)
-    fetch('http://localhost:8081/sentiment-analysis', {
+async function getCoordinates(cityName) {
+    const response = await fetch('http://localhost:8081/getCoordinates', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({url: urlInput})
+        body: JSON.stringify({ cityName: cityName })
     })
-    .then(response => response.json())
-    .then(response => updateUI(response))
+    const coordinates = response.json();
+    return coordinates;
 }
 
-function updateUI(response){
+async function getWeather(cityData){
+    const response = await fetch('http://localhost:8081/getWeather', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cityData: cityData })
+    })
+    const weather = response.json();
+    return weather;
+}
+
+async function getImage(cityName){
+    const response = await fetch('http://localhost:8081/getImage', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cityName: cityName })
+    })
+    const imageData = response.json();
+    return imageData;
+}
+
+
+function updateUI(response) {
     document.getElementById('status').innerHTML = 'Success!'
-    document.getElementById('agreement').innerHTML = `${response.agreement}`
-    document.getElementById('confidence').innerHTML = `${response.confidence}`
-    document.getElementById('irony').innerHTML = `${response.irony}`
+    document.getElementById('agreement').innerHTML = `${response.geonames[0].lat}`
+    document.getElementById('confidence').innerHTML = `${response.geonames[0].lng}`
+    document.getElementById('irony').innerHTML = `${response.geonames[0].countryName}`
     document.getElementById('subjectivity').innerHTML = `${response.subjectivity}`
     document.getElementById('score').innerHTML = `${response.score_tag}`
 }
 
-function cleanUI(){
+function cleanUI() {
     document.getElementById('agreement').innerHTML = '';
     document.getElementById('confidence').innerHTML = '';
     document.getElementById('irony').innerHTML = '';
@@ -48,4 +65,4 @@ function cleanUI(){
     document.getElementById('score').innerHTML = '';
 }
 
-export { retrieveAnalysis, updateUI }
+export { updateUI }
