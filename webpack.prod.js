@@ -2,8 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+
+process.traceDeprecation = true;
 
 module.exports = {
     entry: './src/client/index.js',
@@ -14,7 +16,10 @@ module.exports = {
     },
     optimization: {
         minimize: true,
-        minimizer: [new OptimizeCSSAssetsPlugin({})],
+        minimizer: [
+            `...`,
+            new CssMinimizerPlugin()
+        ]
     },
     module: {
         rules: [
@@ -25,10 +30,15 @@ module.exports = {
             {
                 test: '/\.js$/',
                 exclude: /node_modules/,
-                loader: "babel-loader",
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-env']
+                    }
+                  }
             },
             {
-                test: /\.scss$/,
+                test: /\.(css|scss)$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
             {

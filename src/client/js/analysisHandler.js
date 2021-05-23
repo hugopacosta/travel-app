@@ -2,11 +2,12 @@ import { checkUrl } from './urlChecker'
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('generate').addEventListener('click', retrieveTravelData);
+    document.getElementById('twitter-icon').appendChild(twitter);
 });
 
 async function retrieveTravelData(e) {
     e.preventDefault();
-    const cityName = document.getElementById('url-input').value;
+    const cityName = document.getElementById('city-input').value;
     document.getElementById('status').innerHTML = 'Loading...';
     const cityData = await getCoordinates(cityName);
     const weather = await getWeather(cityData);
