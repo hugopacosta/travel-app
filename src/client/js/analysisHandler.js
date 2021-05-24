@@ -1,9 +1,19 @@
 import { checkUrl } from './urlChecker'
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('generate').addEventListener('click', retrieveTravelData);
-    document.getElementById('twitter-icon').appendChild(twitter);
+    document.getElementById('travel-button').addEventListener('click', scrollTo);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems);
+  });
+
+async function scrollTo(e){
+    document.querySelector('#results-container').scrollIntoView({
+        behavior: 'smooth' 
+      });
+}
 
 async function retrieveTravelData(e) {
     e.preventDefault();

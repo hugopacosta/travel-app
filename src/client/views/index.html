@@ -2,15 +2,78 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&family=Public+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="#">
     <meta charset="utf-8">
     <title>Test</title>
 </head>
 
 <body>
-    <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+    <nav class="transparent">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo brand-name">Travel App</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row form-container">
+            <form class="col s6 offset-s3 center travel-form">
+                <div class="row">
+                    <div class="input-field">
+                        <label for="last_name">City Name</label>
+                        <input id="last_name" type="text">
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="input-field">
+                        <input id="travel_date" type="text" class="datepicker">
+                        <label for="travel_date">Travel Date</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <a id="travel-button" class="waves-effect waves-light btn cyan">Travel!</a>
+                </div>
+            </form>
+        </div>
+        <div id="results-container" class="travel-results-container scrolling-wrapper">
+            <div class="card large">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2616&q=80">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                  <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                  <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+              </div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+            <div class="card"><h2>Card</h2></div>
+        </div>
     </div>
 
     <script>
