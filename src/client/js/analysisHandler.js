@@ -1,12 +1,10 @@
 import { checkUrl } from './urlChecker'
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('travel-button').addEventListener('click', scrollTo);
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems);
+    M.updateTextFields();
+    document.getElementById('travel-button').addEventListener('click', scrollTo);
   });
 
 async function scrollTo(e){

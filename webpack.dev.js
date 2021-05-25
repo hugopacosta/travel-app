@@ -37,6 +37,14 @@ module.exports = {
             {
                 test: /\.html$/i,
                 loader: 'html-loader',
+            },
+            {
+                // Exposes jQuery for use outside Webpack build
+                test: require.resolve("jquery"),
+                loader: "expose-loader",
+                options: { 
+                    exposes: ["$", "jQuery"],
+                },
             }
         ]
     },
@@ -46,5 +54,8 @@ module.exports = {
             filename: "./index.html",
         }),
         new BundleAnalyzerPlugin()
-    ]
+    ],
+    externals: {
+        jQuery: 'jquery'
+    }
 }

@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 process.traceDeprecation = true;
 
@@ -13,6 +12,12 @@ module.exports = {
     output: {
         libraryTarget: 'var',
         library: 'Client'
+    },
+    resolve: {
+        extensions: [".js", ".jsx"],
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
     },
     optimization: {
         minimize: true,
@@ -44,6 +49,14 @@ module.exports = {
             {
                 test: /\.html$/i,
                 loader: 'html-loader',
+            },
+            {
+                // Exposes jQuery for use outside Webpack build
+                test: require.resolve("jquery"),
+                loader: "expose-loader",
+                options: { 
+                    exposes: ["$", "jQuery"],
+                },
             }
         ]
     },
@@ -51,8 +64,11 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
+            minify: false
         }),
-        new MiniCssExtractPlugin({ filename: "[name].css" }),
-        new WorkboxPlugin.GenerateSW()
-    ]
+        new MiniCssExtractPlugin({ filename: "[name].css" })
+    ],
+    externals: {
+        jQuery: 'jquery'
+    }
 }
