@@ -5,6 +5,7 @@ const cors = require('cors')
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const app = express()
+var public = path.join(__dirname, 'public');
 
 dotenv.config();
 app.use(cors());
@@ -12,9 +13,10 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.join(__dirname, 'index.html'));
-})
+    res.sendFile(path.join(public, 'index.html'));
+});
+
+app.use('/', express.static(public));
 
 // designates what port the app will listen to for incoming requests
 app.listen(process.env.PORT, function() {
