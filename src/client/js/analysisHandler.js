@@ -20,7 +20,7 @@ async function retrieveTravelData(e) {
         $('#card-main-info').fadeIn();
     })
     const cityData = await getCoordinates(cityName);
-    const weather = await getWeather(cityData);
+    // const weather = await getWeather(cityData);
     const imageData = await getImage(cityName);
     console.log(cityData)
     console.log(weather)
