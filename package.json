@@ -6,8 +6,7 @@
         "test": "jest",
         "start": "node src/server/index.js",
         "build-prod": "webpack --config webpack.prod.js",
-        "build-dev": "webpack serve --config webpack.dev.js --open",
-        "heroku-postbuild": "webpack -p"
+        "build-dev": "webpack serve --config webpack.dev.js --open"
     },
     "keywords": [],
     "author": "",
