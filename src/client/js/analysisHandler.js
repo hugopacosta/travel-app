@@ -16,7 +16,7 @@ async function retrieveTravelData(e) {
     e.preventDefault();
     const cityName = document.getElementById('city-input').value;
     $('#card-main-info').fadeOut(function() {
-        $('#card-main-info').html("Loading...");
+        $('#card-main-info').html("Loading..");
         $('#card-main-info').fadeIn();
     })
     const cityData = await getCoordinates(cityName);
