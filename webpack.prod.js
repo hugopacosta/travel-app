@@ -10,6 +10,7 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
     output: {
+        path: path.join(__dirname, 'public'),
         libraryTarget: 'var',
         library: 'Client'
     },
@@ -27,8 +28,7 @@ module.exports = {
         ]
     },
     module: {
-        rules: [
-            {   
+        rules: [{
                 test: /\.png/,
                 type: 'asset/resource'
             },
@@ -38,13 +38,21 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                      presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env']
                     }
-                  }
+                }
             },
             {
                 test: /\.(css|scss)$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: path.join(__dirname, 'public')
+                        }
+                    },
+                    "css-loader",
+                    "sass-loader"
+                ],
             },
             {
                 test: /\.html$/i,
@@ -54,7 +62,7 @@ module.exports = {
                 // Exposes jQuery for use outside Webpack build
                 test: require.resolve("jquery"),
                 loader: "expose-loader",
-                options: { 
+                options: {
                     exposes: ["$", "jQuery"],
                 },
             }
@@ -66,7 +74,10 @@ module.exports = {
             filename: "./index.html",
             minify: false
         }),
-        new MiniCssExtractPlugin({ filename: "[name].css" })
+        new MiniCssExtractPlugin({
+            filename: 'main.css',
+            chunkFilename: 'main.css',
+        })
     ],
     externals: {
         jQuery: 'jquery'
