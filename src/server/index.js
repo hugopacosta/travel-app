@@ -9,10 +9,10 @@ const app = express()
 dotenv.config();
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join('public', 'index.html'));
+    res.sendFile(path.join('./public', 'index.html'));
 });
 
 
