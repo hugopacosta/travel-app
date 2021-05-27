@@ -11,14 +11,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('dist'))
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     // res.sendFile('dist/index.html')
     res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.listen(process.env.PORT, function() {
+    console.log(`Example app listening on port ${process.env.PORT}`)
 })
 
 // app.post('/sentiment-analysis', function(req,res) {
@@ -36,7 +36,7 @@ app.listen(8081, function () {
 //                                  .catch(error => console.log('error', error));
 // })
 
-app.post('/getCoordinates', function (req, res) {
+app.post('/getCoordinates', function(req, res) {
     const geonamesURL = 'http://api.geonames.org/searchJSON?' + new URLSearchParams({
         username: process.env.GEONAMES_USERNAME,
         maxRows: 1,
@@ -50,7 +50,7 @@ app.post('/getCoordinates', function (req, res) {
         .catch(error => console.log('error', error));
 })
 
-app.post('/getWeather', function (req, res) {
+app.post('/getWeather', function(req, res) {
     const geonamesURL = 'https://api.weatherbit.io/v2.0/forecast/daily?' + new URLSearchParams({
         key: process.env.WEATHERBIT_API_KEY,
         lat: req.body.cityData.geonames[0].lat,
@@ -64,7 +64,7 @@ app.post('/getWeather', function (req, res) {
         .catch(error => console.log('error', error));
 })
 
-app.post('/getImage', function (req, res) {
+app.post('/getImage', function(req, res) {
     const geonamesURL = 'https://pixabay.com/api/?' + new URLSearchParams({
         key: process.env.PIXABAY_API_KEY,
         q: req.body.cityName,
