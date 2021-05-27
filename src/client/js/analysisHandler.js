@@ -64,20 +64,20 @@ async function getImage(cityName) {
 
 function updateUI(cityData, imageData, weather) {
     document.getElementById('card-title').innerHTML = cityData.geonames[0].name;
-    // $('#card-title').fadeOut(function() {
-    //     $(this).html(cityData.geonames[0].name);
-    //     $(this).fadeIn();
-    // })
-    // const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-    // const randomImg = random(0, imageData.hits.length);
-    // $('#card-img-container').height(250);
-    // $('#card-img').attr('src', imageData.hits[randomImg].webformatURL)
-    // document.getElementById('status').innerHTML = 'Success!'
-    // document.getElementById('agreement').innerHTML = `${response.geonames[0].lat}`
-    // document.getElementById('confidence').innerHTML = `${response.geonames[0].lng}`
-    // document.getElementById('irony').innerHTML = `${response.geonames[0].countryName}`
-    // document.getElementById('subjectivity').innerHTML = `${response.subjectivity}`
-    // document.getElementById('score').innerHTML = `${response.score_tag}`
+    $('#card-title').fadeOut(function() {
+        $(this).html(cityData.geonames[0].name);
+        $(this).fadeIn();
+    })
+    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+    const randomImg = random(0, imageData.hits.length);
+    $('#card-img-container').height(250);
+    $('#card-img').attr('src', imageData.hits[randomImg].webformatURL)
+        // document.getElementById('status').innerHTML = 'Success!'
+        // document.getElementById('agreement').innerHTML = `${response.geonames[0].lat}`
+        // document.getElementById('confidence').innerHTML = `${response.geonames[0].lng}`
+        // document.getElementById('irony').innerHTML = `${response.geonames[0].countryName}`
+        // document.getElementById('subjectivity').innerHTML = `${response.subjectivity}`
+        // document.getElementById('score').innerHTML = `${response.score_tag}`
 }
 
 function cleanUI() {
