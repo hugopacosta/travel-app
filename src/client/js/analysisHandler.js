@@ -41,7 +41,7 @@ async function retrieveTravelData(e) {
 }
 
 async function getCoordinates(cityName) {
-    const response = await fetch('/getCoordinates', {
+    const response = await fetch('/api/getCoordinates', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
@@ -52,7 +52,7 @@ async function getCoordinates(cityName) {
 }
 
 async function getWeather(cityData) {
-    const response = await fetch('/getWeather', {
+    const response = await fetch('/api/getWeather', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
@@ -63,7 +63,7 @@ async function getWeather(cityData) {
 }
 
 async function getImage(cityName) {
-    const response = await fetch('/getImage', {
+    const response = await fetch('/api/getImage', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },

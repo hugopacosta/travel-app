@@ -36,7 +36,7 @@ app.listen(process.env.PORT, function() {
 //                                  .catch(error => console.log('error', error));
 // })
 
-app.post('/getCoordinates', function(req, res) {
+app.post('/api/getCoordinates', function(req, res) {
     const geonamesURL = 'http://api.geonames.org/searchJSON?' + new URLSearchParams({
         username: process.env.GEONAMES_USERNAME,
         maxRows: 1,
@@ -50,7 +50,7 @@ app.post('/getCoordinates', function(req, res) {
         .catch(error => console.log('error', error));
 })
 
-app.post('/getWeather', function(req, res) {
+app.post('/api/getWeather', function(req, res) {
     const geonamesURL = 'https://api.weatherbit.io/v2.0/forecast/daily?' + new URLSearchParams({
         key: process.env.WEATHERBIT_API_KEY,
         lat: req.body.cityData.geonames[0].lat,
@@ -64,7 +64,7 @@ app.post('/getWeather', function(req, res) {
         .catch(error => console.log('error', error));
 })
 
-app.post('/getImage', function(req, res) {
+app.post('/api/getImage', function(req, res) {
     const geonamesURL = 'https://pixabay.com/api/?' + new URLSearchParams({
         key: process.env.PIXABAY_API_KEY,
         q: req.body.cityName,

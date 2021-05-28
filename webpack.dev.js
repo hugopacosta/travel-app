@@ -13,6 +13,11 @@ module.exports = {
         library: 'Client',
         clean: true
     },
+    devServer: {
+        proxy: {
+            '/api': 'http://localhost:8081',
+        },
+    },
     resolve: {
         extensions: [".js", ".jsx"]
     },
@@ -42,7 +47,7 @@ module.exports = {
                 // Exposes jQuery for use outside Webpack build
                 test: require.resolve("jquery"),
                 loader: "expose-loader",
-                options: { 
+                options: {
                     exposes: ["$", "jQuery"],
                 },
             }
