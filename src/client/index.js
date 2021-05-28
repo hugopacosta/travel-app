@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import M from 'materialize-css';
+import 'jquery-validation';
 import { checkUrl } from './js/urlChecker'
 import { retrieveAnalysis } from './js/analysisHandler'
 import './styles/base.scss'

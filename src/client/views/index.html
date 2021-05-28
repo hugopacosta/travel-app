@@ -31,24 +31,24 @@
                     <div class="row city-name-row">
                         <div class="input-field col s12">
                             <i class="fas fa-city prefix form-icon white-text"></i>
-                            <input class="white-text" id="city-input" type="text">
+                            <input class="white-text validate" id="city-input" type="text">
                             <label class="flow-text" for="city-input">City Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="fas fa-calendar-day prefix form-icon white-text"></i>
-                            <input id="travel-first-day" type="text" class="datepicker white-text">
+                            <input id="travel-first-day" type="text" class="datepicker white-text validate" required/>
                             <label for="travel-first-day">First Day</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="fas fa-calendar-day prefix form-icon white-text"></i>
-                            <input id="travel-last-day" type="text" class="datepicker white-text">
+                            <input id="travel-last-day" type="text" class="datepicker white-text validate">
                             <label for="travel-last-day">Last Day</label>
                         </div>
                     </div>
                     <div class="row center button-row">
-                        <a id="travel-button" class="waves-effect waves-light btn travel-button">Travel!</a>
+                        <a id="travel-button" class="waves-effect waves-light btn travel-button" type="submit">Travel!</a>
                     </div>
                 </form>
             </div>
