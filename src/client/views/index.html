@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/ https://fonts.gstatic.com/ https://use.typekit.net/ https://pixabay.com/ data: 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/ https://fonts.gstatic.com/ https://use.typekit.net/ https://pixabay.com/ http://localhost:8081/ data: 'unsafe-inline';">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -29,17 +29,22 @@
             <div class="col s12">
                 <form class="travel-form">
                     <div class="row city-name-row">
-                        <div class="input-field">
+                        <div class="input-field col s12">
                             <i class="fas fa-city prefix form-icon white-text"></i>
                             <input class="white-text" id="city-input" type="text">
                             <label class="flow-text" for="city-input">City Name</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field">
+                        <div class="input-field col s6">
                             <i class="fas fa-calendar-day prefix form-icon white-text"></i>
-                            <input id="travel_date" type="text" class="datepicker white-text">
-                            <label for="travel_date">Travel Date</label>
+                            <input id="travel-first-day" type="text" class="datepicker white-text">
+                            <label for="travel-first-day">First Day</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="fas fa-calendar-day prefix form-icon white-text"></i>
+                            <input id="travel-last-day" type="text" class="datepicker white-text">
+                            <label for="travel-last-day">Last Day</label>
                         </div>
                     </div>
                     <div class="row center button-row">

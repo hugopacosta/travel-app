@@ -1,13 +1,13 @@
+const cors = require('cors')
 const path = require('path')
 const bodyParser = require('body-parser');
 const express = require('express')
-const cors = require('cors')
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const app = express()
+app.use(cors());
 
 dotenv.config();
-app.use(cors());
 app.use(express.json());
 app.use(express.static('./public'));
 

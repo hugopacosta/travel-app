@@ -2,15 +2,27 @@ import { checkUrl } from './urlChecker'
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems);
+    var instances = M.Datepicker.init(elems, { minDate: new Date() });
     document.getElementById('travel-button').addEventListener('click', retrieveTravelData);
 });
 
-async function scrollTo(e) {
-    document.querySelector('#results-container').scrollIntoView({
-        behavior: 'smooth'
-    });
-}
+$('#travel-first-day').datepicker({
+    autoclose: true
+}).on('change', function(e) {
+    const firstDay = e.target.M_Datepicker.date;
+    const lastDay = new Date($('#travel-last-day').val());
+    //on change of date on start datepicker, set end datepicker's date
+    $('#travel-last-day').datepicker({
+        defaultDate: firstDay,
+        minDate: firstDay,
+    })
+    if (lastDay != null && lastDay < firstDay) {
+        const lastDayInputField = M.Datepicker.getInstance($('#travel-last-day'));
+        lastDayInputField.setDate(firstDay);
+        lastDayInputField._finishSelection();
+    }
+});
+
 
 async function retrieveTravelData(e) {
     e.preventDefault();
@@ -20,8 +32,8 @@ async function retrieveTravelData(e) {
         $('#card-main-info').fadeIn();
     })
     const cityData = await getCoordinates(cityName);
-    const weather = await getWeather(cityData);
     const imageData = await getImage(cityName);
+    const weather = await getWeather(cityData);
     console.log(cityData)
     console.log(weather)
     console.log(imageData)
@@ -29,7 +41,7 @@ async function retrieveTravelData(e) {
 }
 
 async function getCoordinates(cityName) {
-    const response = await fetch('/getCoordinates', {
+    const response = await fetch('http://localhost:8081/getCoordinates', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
@@ -40,7 +52,7 @@ async function getCoordinates(cityName) {
 }
 
 async function getWeather(cityData) {
-    const response = await fetch('/getWeather', {
+    const response = await fetch('http://localhost:8081/getWeather', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
@@ -51,7 +63,7 @@ async function getWeather(cityData) {
 }
 
 async function getImage(cityName) {
-    const response = await fetch('/getImage', {
+    const response = await fetch('http://localhost:8081/getImage', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
@@ -63,7 +75,6 @@ async function getImage(cityName) {
 
 
 function updateUI(cityData, imageData, weather) {
-    document.getElementById('card-title').innerHTML = cityData.geonames[0].name;
     $('#card-title').fadeOut(function() {
         $(this).html(cityData.geonames[0].name);
         $(this).fadeIn();
