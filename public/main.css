@@ -1,4 +1,4 @@
-.travel-form{border-radius:10px;margin-top:20px}.city-name-row{padding-top:30px}.button-row{padding-bottom:10px}.form-icon{padding-right:8px}.travel-button{background-color:#39a2ae}.card{transition:1s ease-in-out}#card-img-container{height:0;max-height:300px;transition:height 1s ease-in-out}#card-img{height:100%;object-fit:cover;width:100%}body,html{background:linear-gradient(138.13deg,#22343c 25.87%,#1f2e35);height:90vh;width:100%}.brand-name{color:#fff!important;font-family:Inter,sans-serif;font-style:normal;font-weight:800}
+.travel-form{margin-top:10px}.city-name-row{padding-top:30px}.button-row{padding-bottom:5px}.form-icon{padding-right:8px}.travel-button{background-color:#39a2ae}.card{transition:1s ease-in-out}#card-img-container{height:0;max-height:300px;transition:height 1s ease-in-out}#card-img{height:100%;object-fit:cover;width:100%}body,html{background:linear-gradient(138.13deg,#22343c 25.87%,#1f2e35);height:90vh;width:100%}.brand-name{color:#fff!important;font-family:Inter,sans-serif;font-style:normal;font-weight:800}
 
 /*!
  * Materialize v1.0.0-rc.2 (http://materializecss.com)
