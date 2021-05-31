@@ -1,9 +1,10 @@
 import 'regenerator-runtime/runtime'
-import { retrieveAnalysis, updateUI } from "../src/client/js/analysisHandler"
+import 'materialize-css';
+import { retrieveTravelData, updateUI } from "../src/client/js/travelInfoHandler"
 
 describe("Testing the Analysis Handler methods", () => {
     test("Testing the retrieveAnalysis() function", () => {
-           expect(retrieveAnalysis).toBeDefined();
+        expect(retrieveTravelData).toBeDefined();
     });
 
     test("Testing the updateUI() function", () => {

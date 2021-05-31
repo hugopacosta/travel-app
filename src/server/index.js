@@ -64,6 +64,20 @@ app.post('/api/getWeather', function(req, res) {
         .catch(error => console.log('error', error));
 })
 
+app.post('/api/getCurrentWeather', function(req, res) {
+    const geonamesURL = 'https://api.weatherbit.io/v2.0/current?' + new URLSearchParams({
+        key: process.env.WEATHERBIT_API_KEY,
+        lat: req.body.cityData.geonames[0].lat,
+        lon: req.body.cityData.geonames[0].lng
+    });
+
+
+    fetch(geonamesURL, { method: 'GET' })
+        .then(response => response.json())
+        .then(data => res.send(data))
+        .catch(error => console.log('error', error));
+})
+
 app.post('/api/getImage', function(req, res) {
     const geonamesURL = 'https://pixabay.com/api/?' + new URLSearchParams({
         key: process.env.PIXABAY_API_KEY,
