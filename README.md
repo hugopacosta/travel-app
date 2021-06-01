@@ -1,9 +1,10 @@
-# Project 3 - Natural Language Processing
+# FEND Capstone - Travel App
 
-This project lets you use the Meaning Cloud Sentiment Analisys API to capture and analyse the text of given URL.  
-To do so, you must create an account at https://www.meaningcloud.com/developer/create-account and create an API Key.  
-After that, access the .env-example file and replace 'YOUR_API_KEY' with your actual key.  
-Now just rename the file to .env and you are ready to run the project.  
+Travel App retrieves weather information about a given destination and date.
+
+The current version was designed for mobile, the desktop version will be available soon.
+
+To run this app, follow the instructions:
 
 First, `cd` into the root folder and run
 - `npm install`  
@@ -21,3 +22,7 @@ To start the server, run:
 
 Finally, to run the tests scripts, type:
 - `npm test`
+
+This project has also been deployed on Heroku.
+
+You can access it on the following link: https://hugo-costa-travel-app.herokuapp.com/
