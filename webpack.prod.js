@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 process.traceDeprecation = true;
 
@@ -77,7 +78,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'main.css',
             chunkFilename: 'main.css',
-        })
+        }),
+        new WorkboxPlugin.GenerateSW()
     ],
     externals: {
         jQuery: 'jquery'

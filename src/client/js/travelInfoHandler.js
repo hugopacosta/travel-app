@@ -31,39 +31,47 @@ $('#travel-first-day').datepicker({
     }
 });
 
+//Main method for retrieving data from the APIs
 async function retrieveTravelData(e) {
     e.preventDefault();
     if (validateForm()) {
         const cityName = document.getElementById('city-input').value;
         updateLoading();
-        const cityData = await getCoordinates(cityName);
-        const imageData = await getImage(cityName);
-        let weather;
-        if (daysUntilTravel() + travelDuration() < 7) {
-            //Fetch current weather info
-            weather = await getCurrentWeather(cityData);
-        } else {
-            //Fetch forecast
-            weather = await getWeather(cityData);
+        try {
+            const cityData = await getCoordinates(cityName);
+            const imageData = await getImage(cityName);
+            let weather;
+            if (daysUntilTravel() + travelDuration() < 7) {
+                //Fetch current weather info
+                weather = await getCurrentWeather(cityData);
+            } else {
+                //Fetch forecast
+                weather = await getWeather(cityData);
+            }
+            updateUI(cityData, imageData, weather);
+        } catch (error) {
+            console.log("Error fetching API response");
         }
-        console.log(cityData)
-        console.log(weather)
-        console.log(imageData)
-        updateUI(cityData, imageData, weather);
     }
 }
 
+//Fetch coordinates from geonames API
 async function getCoordinates(cityName) {
     const response = await fetch('/api/getCoordinates', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cityName: cityName })
-    })
-    const coordinates = response.json();
-    return coordinates;
+    }).catch(function() {
+        console.log("Error retreving data from API");
+    });
+    if (response.ok) {
+        const coordinates = response.json();
+        return coordinates;
+    } else throw new Error(response.statusText);
 }
 
+//Fetch current weather data for travels within 7 days from weatherbit
 async function getCurrentWeather(cityData) {
     const response = await fetch('/api/getCurrentWeather', {
         method: 'POST',
@@ -72,33 +80,48 @@ async function getCurrentWeather(cityData) {
         body: JSON.stringify({
             cityData: cityData
         })
-    })
-    const weather = response.json();
-    return weather;
+    }).catch(function() {
+        console.log("Error retreving data from API");
+    });
+    if (response.ok) {
+        const weather = response.json();
+        return weather;
+    } else throw new Error(response.statusText);
 }
 
+//Fetch weather forecast data from weatherbit
 async function getWeather(cityData) {
     const response = await fetch('/api/getWeather', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cityData: cityData })
-    })
-    const weather = response.json();
-    return weather;
+    }).catch(function() {
+        console.log("Error retreving data from API");
+    });
+    if (response.ok) {
+        const weather = response.json();
+        return weather;
+    } else throw new Error(response.statusText);
 }
 
+//Fetch image from pixabay
 async function getImage(cityName) {
     const response = await fetch('/api/getImage', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cityName: cityName })
-    })
-    const imageData = response.json();
-    return imageData;
+    }).catch(function() {
+        console.log("Error retreving data from API");
+    });
+    if (response.ok) {
+        const imageData = response.json();
+        return imageData;
+    } else throw new Error(response.statusText);
 }
 
+//Update UI with loading text
 function updateLoading() {
     $('#card-main-info').fadeOut(function() {
         $('#card-main-info').html("Loading..");
@@ -106,12 +129,14 @@ function updateLoading() {
     })
 }
 
+//Update UI with fetched data
 function updateUI(cityData, imageData, weather) {
     updateCard(cityData, imageData);
     setCardOverviewText(cityData);
     setCardWeatherInfo(weather);
 }
 
+//Update card with retrieved info
 function updateCard(cityData, imageData) {
     $('#card-title').html(cityData.geonames[0].name + '<i id="card-icon" style="pointer-events:none" class="fas fa-ellipsis-v right activator"></i>');
     $('#card-title').addClass("activator");
@@ -123,6 +148,7 @@ function updateCard(cityData, imageData) {
     $('#card-img').attr('src', imageData.hits[randomImg].webformatURL)
 }
 
+//Set the main text of the card
 function setCardOverviewText(cityData) {
     if (daysUntilTravel() == 0) {
         $('#card-main-info').html(`Your travel to ${cityData.geonames[0].name} is today!`)
@@ -138,6 +164,7 @@ function setCardOverviewText(cityData) {
     }
 }
 
+//Set weather info on the card
 function setCardWeatherInfo(weather) {
     $('#card-reveal-info-text').html(`The average temperature is ${weather.data[0].temp} Celsius.
                                       The weather will be mostly ${weather.data[0].weather.description}.`);
@@ -146,6 +173,7 @@ function setCardWeatherInfo(weather) {
 
 }
 
+//Return number of days until the first day of the travel
 function daysUntilTravel() {
     const todayDate = new Date();
     const firstDay = new Date($('#travel-first-day').val());
@@ -155,6 +183,7 @@ function daysUntilTravel() {
     return Math.round(days);
 }
 
+//Return number of days the travel will last for
 function travelDuration() {
     const firstDay = new Date($('#travel-first-day').val());
     const lastDay = new Date($('#travel-last-day').val());
@@ -163,6 +192,7 @@ function travelDuration() {
     return Math.round(days);
 }
 
+//Validate input from user
 function validateForm() {
     const cityInputValue = $('#city-input').val();
     const firstDayValue = $('#travel-first-day').val();

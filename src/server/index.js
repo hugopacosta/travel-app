@@ -1,10 +1,11 @@
-const cors = require('cors')
-const path = require('path')
+const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
-const express = require('express')
+const express = require('express');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
-const app = express()
+const app = express();
+module.exports = app;
 app.use(cors());
 
 dotenv.config();
@@ -20,21 +21,6 @@ app.get('/', function(req, res) {
 app.listen(process.env.PORT, function() {
     console.log(`Example app listening on port ${process.env.PORT}`)
 })
-
-// app.post('/sentiment-analysis', function(req,res) {
-//     const sentimentAnalysisURL = 'https://api.meaningcloud.com/sentiment-2.1?' + new URLSearchParams({
-//                                                                                                 key: process.env.API_KEY,
-//                                                                                                 lang: 'en',
-//                                                                                                 url: req.body.url
-//                                                                                             });
-
-
-
-//     fetch(sentimentAnalysisURL, { method: 'POST' })
-//                                  .then(response => response.json())
-//                                  .then(data => res.send(data))
-//                                  .catch(error => console.log('error', error));
-// })
 
 app.post('/api/getCoordinates', function(req, res) {
     const geonamesURL = 'http://api.geonames.org/searchJSON?' + new URLSearchParams({
