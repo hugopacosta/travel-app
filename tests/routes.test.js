@@ -13,7 +13,6 @@ describe('API Endpoints', () => {
             })
             .expect(200)
             .expect(function(res) {
-                console.log(res.body);
                 res.body.geonames[0].name = 'London';
             })
     })
