@@ -5,11 +5,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const app = express();
+app.use(express.json());
 module.exports = app;
 app.use(cors());
 
 dotenv.config();
-app.use(express.json());
 app.use(express.static('./public'));
 
 app.get('/', function(req, res) {
@@ -28,7 +28,7 @@ app.post('/api/getCoordinates', function(req, res) {
         maxRows: 1,
         name: req.body.cityName
     });
-
+    console.log(geonamesURL)
 
     fetch(geonamesURL, { method: 'GET' })
         .then(response => response.json())
